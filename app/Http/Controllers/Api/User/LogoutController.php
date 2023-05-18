@@ -13,7 +13,7 @@ class LogoutController extends Controller
         $token->delete();
 
         return response()->json([
-            'message' => 'Token revoked',
+            'message' => 'Token revoked.',
         ]);
     }
 }
