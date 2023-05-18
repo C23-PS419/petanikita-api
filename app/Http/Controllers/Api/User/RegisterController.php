@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -27,8 +28,9 @@ class RegisterController extends Controller
 
         } catch (QueryException $e) {
             return response()->json([
-                'message' => str($e->errorInfo[2])
-                    ->after('DETAIL:  '),
+                'message' => Str::of($e->errorInfo[2])
+                    ->before("\n")
+                    ->trim(),
             ], 409);
         } catch (\Exception $e) {
             return response()->json([
