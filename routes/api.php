@@ -11,6 +11,11 @@ Route::group(['name' => 'api.'], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('/auth/logout', LogoutController::class)->name('logout');
+        Route::get('/auth/user', function () {
+            return response()->json([
+                'data' => request()->user(),
+            ]);
+        })->name('user');
 
         // TODO: Route product
     });
