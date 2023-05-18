@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class TokenController extends Controller
 {
-    public function __invoke(Request $request) {
+    public function __invoke(Request $request)
+    {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
