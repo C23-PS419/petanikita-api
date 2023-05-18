@@ -12,21 +12,23 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'email' => ['required', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
         ]);
 
-        if (User::where('email', $request->email)->first()) {
+        try {
+            $user = User::create($request->only([
+                'name',
+                'email',
+                'password',
+            ]));
+        } catch (\Exception $e) {
             return response()->json([
-                'message' => 'Email already registered',
+                'message' => str($e->getMessage())
+                    ->after('DETAIL:  ')
+                    ->before('. (Connection'),
             ], 409);
         }
-
-        $user = User::create($request->only([
-            'name',
-            'email',
-            'password',
-        ]));
 
         return response()->json([
             'message' => 'Register success',
