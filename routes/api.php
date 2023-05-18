@@ -5,11 +5,13 @@ use App\Http\Controllers\Api\User\RegisterController;
 use App\Http\Controllers\Api\User\TokenController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/token', TokenController::class);
-Route::post('/user/register', RegisterController::class);
+Route::group(['name' => 'api.'], function () {
+    Route::post('/auth/token', TokenController::class)->name('token');
+    Route::post('/auth/register', RegisterController::class)->name('register');
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::get('/user/logout', LogoutController::class);
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::get('/auth/logout', LogoutController::class)->name('logout');
 
-    // TODO: Route product
+        // TODO: Route product
+    });
 });
