@@ -22,8 +22,6 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $this->authorize('create', Product::class);
-
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
