@@ -23,17 +23,19 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
+            'description' => ['string'],
             'price' => ['required', 'integer'],
             'stock' => ['required', 'integer'],
         ]);
 
-        $product = Product::create($request->only([
+        $product = Product::make($request->only([
             'name',
             'description',
             'price',
             'stock',
         ]));
+
+        $request->user()->products()->save($product);
 
         return ProductResource::make($product);
     }
