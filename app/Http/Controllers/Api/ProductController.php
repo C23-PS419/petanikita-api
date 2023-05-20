@@ -12,16 +12,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $this->authorize('viewAny', Product::class);
-
-        return ProductResource::collection(Product::all());
+        return ProductResource::collection(Product::all()->load('user'));
     }
 
     public function show(Product $product)
     {
-        $this->authorize('view', $product);
-
-        return ProductResource::make($product);
+        return ProductResource::make($product->load('user'));
     }
 
     public function store(Request $request)
@@ -63,7 +59,7 @@ class ProductController extends Controller
             'stock',
         ]));
 
-        return ProductResource::make($product);
+        return ProductResource::make($product->load('user'));
     }
 
     public function destroy(Product $product)
