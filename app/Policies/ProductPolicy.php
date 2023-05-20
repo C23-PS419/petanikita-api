@@ -27,11 +27,11 @@ class ProductPolicy
 
     public function update(User $user, Product $product): bool
     {
-        return $product->user() == $user;
+        return $product->user_id == $user->id;
     }
 
     public function delete(User $user, Product $product): bool
     {
-        return $product->user() == $user;
+        return $product->user_id == $user->id;
     }
 }
