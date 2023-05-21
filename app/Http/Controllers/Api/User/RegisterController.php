@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -38,9 +39,8 @@ class RegisterController extends Controller
             ], 500);
         }
 
-        return response()->json([
-            'message' => 'Register success.',
-            'data' => $user,
-        ], 201);
+        return UserResource::make($user)
+            ->response()
+            ->setStatusCode(201);
     }
 }
