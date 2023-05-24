@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -16,14 +15,15 @@ class RegisterController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'min:10', 'max:13'],
             'password' => ['required', 'string', 'min:8'],
         ]);
 
         try {
-
-            $user = User::create($request->only([
+            User::create($request->only([
                 'name',
                 'email',
+                'phone',
                 'password',
             ]));
 
@@ -39,8 +39,6 @@ class RegisterController extends Controller
             ], 500);
         }
 
-        return UserResource::make($user)
-            ->response()
-            ->setStatusCode(201);
+        return response(null, 201);
     }
 }
