@@ -12,6 +12,6 @@ class LogoutController extends Controller
 
         $token->delete();
 
-        return response('', 204);
+        return response(['message' => 'Revoked.'], 200);
     }
 }
