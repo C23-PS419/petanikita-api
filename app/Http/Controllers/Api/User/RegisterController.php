@@ -17,6 +17,6 @@ class RegisterController extends Controller
             'password',
         ]));
 
-        return response(null, 201);
+        return response(['message' => 'Created.'], 201);
     }
 }
