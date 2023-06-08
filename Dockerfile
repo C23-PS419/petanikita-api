@@ -22,5 +22,5 @@ WORKDIR /app
 COPY composer.json .
 RUN composer install --no-scripts
 COPY . .
+CMD php artisan migrate
 CMD php artisan serve --host=0.0.0.0 --port 80
-#test2
