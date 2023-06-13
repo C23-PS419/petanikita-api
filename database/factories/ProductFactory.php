@@ -15,7 +15,7 @@ class ProductFactory extends Factory
 
     public function configure(): static
     {
-        return $this->afterCreating($this->assignImagesToMediaLibrary(256, 256, 'products', 'plants', 1, 1));
+        return $this->afterCreating($this->assignImagesToMediaLibrary(256, 256, 'images', 'plants', 1, 1));
     }
 
     public function definition(): array
