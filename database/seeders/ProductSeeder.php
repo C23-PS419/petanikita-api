@@ -12,14 +12,14 @@ class ProductSeeder extends Seeder
     {
         User::find(2)->each(function (User $user) {
             Product::factory()->create([
-                'user_id' => $user
+                'user_id' => $user,
             ]);
         });
 
         User::all()->each(function (User $user) {
             Product::factory(rand(1, 3))
                 ->create([
-                    'user_id' => $user
+                    'user_id' => $user,
                 ]);
         });
     }
