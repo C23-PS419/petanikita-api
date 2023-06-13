@@ -15,9 +15,10 @@ class ProductSeeder extends Seeder
         );
 
         User::all()->each(function (User $user) {
-            $user->products()->saveMany(
-                Product::factory()->count(rand(0, 5))->make()
-            );
+            Product::factory(rand(1,3))
+                ->create([
+                    'user_id' => $user
+                ]);
         });
     }
 }
