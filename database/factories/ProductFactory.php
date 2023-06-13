@@ -3,12 +3,20 @@
 namespace Database\Factories;
 
 use App\Models\Product;
+use Database\Factories\Concerns\DownloadImagesToMediaLibrary;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
 class ProductFactory extends Factory
 {
+    use DownloadImagesToMediaLibrary;
+
     protected $model = Product::class;
+
+    public function configure(): static
+    {
+        return $this->afterCreating($this->assignImagesToMediaLibrary(256, 256, 'images', 'plants', 1, 1));
+    }
 
     public function definition(): array
     {

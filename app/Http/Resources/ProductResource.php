@@ -20,6 +20,10 @@ class ProductResource extends JsonResource
 
             'user' => $this->whenLoaded('user'),
 
+            'images' => $this->whenLoaded('media',
+                array_column($this->getMedia('images')->toArray(), 'original_url')
+            ),
+
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
