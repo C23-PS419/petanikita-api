@@ -69,7 +69,6 @@ return [
             'metadata' => ['cacheControl' => 'public,max-age=86400'], // optional: default metadata
         ],
 
-
     ],
 
     /*
