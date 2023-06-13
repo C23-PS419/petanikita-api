@@ -11,12 +11,12 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return ProductResource::collection(Product::all()->load('user'));
+        return ProductResource::collection(Product::all()->load(['user', 'media']));
     }
 
     public function show(Product $product)
     {
-        return ProductResource::make($product->load('user'));
+        return ProductResource::make($product->load(['user', 'media']));
     }
 
     public function store(ProductRequest $request)
