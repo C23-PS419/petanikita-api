@@ -49,4 +49,8 @@ jobs:
           --set-env-vars "DB_HOST=${{ secrets.DB_HOST }}" \
           --set-env-vars "APP_KEY=${{ secrets.APP_KEY }}" \
           --set-env-vars "APP_DEBUG=${{ secrets.APP_DEBUG }}" \
-          --set-env-vars "GOOGLE_CLOUD_KEY_FILE=\${{ secrets.GOOGLE_CLOUD_KEY_FILE }}"
+          --set-env-vars "GOOGLE_CLOUD_KEY_FILE=${{ secrets.GOOGLE_CLOUD_KEY_FILE }}" \
+          --set-env-vars "GOOGLE_CLOUD_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}" \
+          --set-env-vars "GOOGLE_CLOUD_STORAGE_BUCKET=${{ secrets.GOOGLE_CLOUD_STORAGE_BUCKET }}" \
+          --set-env-vars "FILESYSTEM_DISK=${{ secrets.FILESYSTEM_DISK }}" \
+          --set-env-vars "GOOGLE_CLOUD_STORAGE_API_URI=${{ secrets.GOOGLE_CLOUD_STORAGE_API_URI }}"
