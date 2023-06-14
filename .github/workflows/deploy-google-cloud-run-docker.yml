@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
+      FILESYSTEM_DISK: gcs
+      MEDIA_DISK: gcs
     steps:
       - name: Login
         uses: google-github-actions/setup-gcloud@v0
@@ -42,4 +44,4 @@ jobs:
           --platform managed \
           --port 80 \
           --allow-unauthenticated \
-          --set-env-vars="DB_DATABASE=${{ secrets.DB_DATABASE }}, DB_USERNAME=${{ secrets.DB_USERNAME }}, DB_PASSWORD=${{ secrets.DB_PASSWORD }}, DB_HOST=${{ secrets.DB_HOST }}, APP_KEY=${{ secrets.APP_KEY }}, APP_DEBUG=${{ secrets.APP_DEBUG }}, FILESYSTEM_DISK=gcs"
+          --set-env-vars="DB_DATABASE=${{ secrets.DB_DATABASE }}, DB_USERNAME=${{ secrets.DB_USERNAME }}, DB_PASSWORD=${{ secrets.DB_PASSWORD }}, DB_HOST=${{ secrets.DB_HOST }}, APP_KEY=${{ secrets.APP_KEY }}, APP_DEBUG=${{ secrets.APP_DEBUG }}, FILESYSTEM_DISK=${{ env.FILESYSTEM_DISK }}, MEDIA_DISK=${{ env.MEDIA_DISK }}, GOOGLE_CLOUD_PROJECT_ID=${{ secrets.GCP_PROJECT_ID }}, GOOGLE_CLOUD_STORAGE_BUCKET=${{ secrets.GOOGLE_CLOUD_STORAGE_BUCKET }}, GOOGLE_CLOUD_STORAGE_API_URI=${{ secrets.GOOGLE_CLOUD_STORAGE_API_URI }}, GCS_KEY=${{ secrets.GCS_KEY }}"
