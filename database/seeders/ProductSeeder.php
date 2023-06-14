@@ -17,7 +17,7 @@ class ProductSeeder extends Seeder
         });
 
         User::all()->each(function (User $user) {
-            Product::factory(rand(1, 3))
+            Product::factory(rand(1, 10))
                 ->create([
                     'user_id' => $user,
                 ]);
